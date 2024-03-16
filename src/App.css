@@ -88,6 +88,25 @@ section {
   }
 }
 
+.todo-list {
+  li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .completed {
+      text-decoration: line-through;
+      text-decoration-color: var(--accent-color);
+      text-decoration-thickness: 0.2rem;
+    }
+
+    span {
+      margin-left: auto;
+    }
+  }
+}
+
 .delete-button {
   background-color: var(--dark-nav-color);
   width: 2rem;

@@ -37,9 +37,9 @@ export default function TodoList() {
         " " +
         thisDate.getFullYear() +
         " в " +
-        thisDate.getHours() +
+        thisDate.getHours().toString().padStart(2, "0") +
         ":" +
-        thisDate.getMinutes();
+        thisDate.getMinutes().toString().padStart(2, "0");
 
       let updatedList = [
         ...listOfTodos,
