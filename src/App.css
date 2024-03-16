@@ -45,6 +45,7 @@ nav {
       font-weight: bolder;
       font-size: 1.3rem;
       transition: all 0.2s;
+      display: inline;
 
       &.active {
         color: var(--accent-color);
