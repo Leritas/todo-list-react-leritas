@@ -1,9 +1,10 @@
 import { useState } from "react";
+import TodoItem from "./todoItem";
 
 export default function TodoList() {
   const [mainInputValue, setMainInputValue] = useState("");
   const [listOfTodos, setListOfTodos] = useState(
-    JSON.parse(localStorage.getItem("localListOfTodos")) || ""
+    JSON.parse(localStorage.getItem("localListOfTodos")) || []
   );
 
   const monthList = [
@@ -26,6 +27,7 @@ export default function TodoList() {
 
   function handleKeyDownEnter(e) {
     if (e.key === "Enter") {
+      if (mainInputValue.length < 4) return;
       let thisDate = new Date();
       let wasAdded =
         "Добавлено " +
@@ -50,22 +52,34 @@ export default function TodoList() {
     }
   }
 
-  function handleDeleteClick(e) {}
+  function handleCheckboxCompletedChange(e) {
+    let newListOfTodo = [...listOfTodos];
+    newListOfTodo[e.target.id].completed =
+      !newListOfTodo[e.target.id].completed;
 
-  function handleChangeClick(e) {}
-
-  let listItems;
-
-  if (listOfTodos != "") {
-    listItems = listOfTodos.map((todo, index) => (
-      <li key={index}>
-        <h3>{todo.text}</h3>
-        <span>{todo.date}</span>
-        <button onClick={handleDeleteClick}>delete</button>
-        <button onClick={handleChangeClick}>change</button>
-      </li>
-    ));
+    setListOfTodos(newListOfTodo);
+    localStorage.setItem("localListOfTodos", JSON.stringify(newListOfTodo));
   }
+
+  function handleDeleteClick(e) {
+    let newListOfTodo = [...listOfTodos];
+    newListOfTodo.splice(e.target.dataset.index, 1);
+
+    console.log(newListOfTodo);
+
+    setListOfTodos(newListOfTodo);
+    localStorage.setItem("localListOfTodos", JSON.stringify(newListOfTodo));
+  }
+
+  const listItems = listOfTodos.map((todo, index) => (
+    <TodoItem
+      todo={todo}
+      index={index}
+      key={index}
+      handleCheckboxCompletedChange={handleCheckboxCompletedChange}
+      handleDeleteClick={handleDeleteClick}
+    />
+  ));
 
   return (
     <div className="todo-container">
@@ -85,7 +99,7 @@ export default function TodoList() {
       </div>
 
       <div className="todo-list">
-        <ol>{listItems}</ol>
+        <ul>{listItems}</ul>
       </div>
     </div>
   );
