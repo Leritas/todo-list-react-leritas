@@ -13,8 +13,10 @@ export default function TodoItem({
         checked={todo.completed}
         onChange={handleCheckboxCompletedChange}
       />
-      <h3 className={todo.completed ? "completed" : ""}>{todo.text}</h3>
-      <span>{todo.date}</span>
+      <span className={todo.completed ? "completed todo-text" : "todo-text"}>
+        {todo.text}
+      </span>
+      <span className="date">{todo.date}</span>
       <button
         className="delete-button"
         data-index={index}

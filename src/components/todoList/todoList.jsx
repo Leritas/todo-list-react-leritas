@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Popup from "reactjs-popup";
 import TodoItem from "./todoItem";
 
 export default function TodoList() {
   const [mainInputValue, setMainInputValue] = useState("");
-  const [listOfTodos, setListOfTodos] = useState(
-    JSON.parse(localStorage.getItem("localListOfTodos")) || []
-  );
+  const [listOfTodos, setListOfTodos] = useState([]);
+
+  useEffect(() => {
+    setListOfTodos(JSON.parse(localStorage.getItem("localListOfTodos")));
+  }, []);
 
   const monthList = [
     "Января",
@@ -30,7 +33,6 @@ export default function TodoList() {
       if (mainInputValue.length < 4) return;
       let thisDate = new Date();
       let wasAdded =
-        "Добавлено " +
         thisDate.getDate() +
         " " +
         monthList[thisDate.getMonth()] +
@@ -71,6 +73,32 @@ export default function TodoList() {
     localStorage.setItem("localListOfTodos", JSON.stringify(newListOfTodo));
   }
 
+  function handleAllDoneClick() {
+    let incomplete = 0;
+    let newListOfTodo = [...listOfTodos];
+    newListOfTodo.map((todo) => {
+      if (!todo.completed) {
+        incomplete++;
+      }
+    });
+    if (incomplete) {
+      newListOfTodo.map((todo) => (todo.completed = true));
+    } else {
+      newListOfTodo.map((todo) => (todo.completed = false));
+    }
+
+    setListOfTodos(newListOfTodo);
+    localStorage.setItem("localListOfTodos", JSON.stringify(newListOfTodo));
+  }
+
+  function handleDeleteAllClick() {
+    //something for history page
+    ///
+    //
+    //
+    setListOfTodos([]);
+    localStorage.setItem("localListOfTodos", JSON.stringify([]));
+  }
   const listItems = listOfTodos.map((todo, index) => (
     <TodoItem
       todo={todo}
@@ -99,6 +127,41 @@ export default function TodoList() {
       </div>
 
       <div className="todo-list">
+        {listOfTodos.length ? (
+          <div className="list-control-buttons">
+            <Popup
+              trigger={
+                <button className="done-all">
+                  <i className="fa-solid fa-square-check"></i> Отметить всё
+                </button>
+              }
+            >
+              <div className="popup-bg done-all">
+                <div className="popup-message">Уверены?</div>
+                <button className="done-all" onClick={handleAllDoneClick}>
+                  ДА
+                </button>
+              </div>
+            </Popup>
+            <Popup
+              trigger={
+                <button className="delete-all">
+                  Удалить всё <i className="fa-solid fa-trash"></i>
+                </button>
+              }
+            >
+              <div className="popup-bg delete-all">
+                <button className="delete-all" onClick={handleDeleteAllClick}>
+                  ДА
+                </button>
+                <div className="popup-message">Уверены?</div>
+              </div>
+            </Popup>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
         <ul>{listItems}</ul>
       </div>
     </div>
