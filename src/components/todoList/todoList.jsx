@@ -5,9 +5,13 @@ import TodoItem from "./todoItem";
 export default function TodoList() {
   const [mainInputValue, setMainInputValue] = useState("");
   const [listOfTodos, setListOfTodos] = useState([]);
+  const [listOfDeleted, setListOfDeleted] = useState([]);
 
   useEffect(() => {
     setListOfTodos(JSON.parse(localStorage.getItem("localListOfTodos")));
+  }, []);
+  useEffect(() => {
+    setListOfDeleted(JSON.parse(localStorage.getItem("localListOfDeleted")));
   }, []);
 
   const monthList = [
