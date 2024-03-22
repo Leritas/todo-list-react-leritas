@@ -28,7 +28,7 @@ nav {
 
   .logo {
     object-fit: cover;
-    max-height: 50%;
+    height: 2.5rem;
     margin-left: 3rem;
   }
 

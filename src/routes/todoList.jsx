@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
-import TodoItem from "../components/todoList/todoItem";
-import MainInput from "../components/todoList/mainInput";
+import TodoItem from "../components/todoList/TodoItem";
+import MainInput from "../components/todoList/MainInput";
 
 export default function TodoList() {
   const [listOfTodos, setListOfTodos] = useState([]);
@@ -67,12 +67,16 @@ export default function TodoList() {
   }
 
   function handleDeleteAllClick() {
-    //something for history page
-    ///
-    //
-    //
+    let newListOfDeleted = listOfDeleted.concat(listOfTodos);
+
+    setListOfDeleted(newListOfDeleted);
+
     updateListOfTodo([]);
     localStorage.setItem("localListOfTodos", JSON.stringify([]));
+    localStorage.setItem(
+      "localListOfDeleted",
+      JSON.stringify(newListOfDeleted)
+    );
   }
   const listItems = listOfTodos.map((todo, index) => (
     <TodoItem

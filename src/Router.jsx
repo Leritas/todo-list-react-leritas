@@ -1,11 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
-import TodoList from "./routes/todoList";
+import { Route, Routes } from "react-router-dom";
+import History from "./routes/History";
+import TodoList from "./routes/TodoList";
 
-const Router = createBrowserRouter([
-  {
-    path: "/",
-    element: <TodoList />,
-  },
-]);
-
-export default Router;
+export default function Router() {
+  return (
+    <Routes>
+      <Route path="/" element={<TodoList />} />
+      <Route path="/history" element={<History />} />
+    </Routes>
+  );
+}
