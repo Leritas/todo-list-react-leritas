@@ -78,6 +78,7 @@ section {
 .todo-input {
   margin-top: 3rem;
   margin-bottom: 1rem;
+  font-size: 2rem;
   text-align: center;
 
   input {
@@ -87,6 +88,7 @@ section {
     margin-top: 1rem;
     width: 100%;
     border-radius: 0.5rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -157,6 +159,8 @@ section {
 
     .todo-text {
       font-size: 2rem;
+      overflow: hidden;
+      word-wrap: break-word;
     }
 
     .completed {

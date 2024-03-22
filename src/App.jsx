@@ -1,16 +1,14 @@
-import { useState } from "react";
 import Header from "./components/header";
-import Main from "./components/main";
 import Footer from "./components/footer";
 import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import Router from "./Router";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Header></Header>
-      <Main></Main>
+      <RouterProvider router={Router} />
       <Footer></Footer>
     </>
   );
