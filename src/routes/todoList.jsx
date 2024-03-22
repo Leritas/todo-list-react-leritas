@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import TodoItem from "../components/todoList/TodoItem";
 import MainInput from "../components/todoList/MainInput";
+import "../components/todoList/todolist.css";
 
 export default function TodoList() {
   const [listOfTodos, setListOfTodos] = useState([]);
@@ -34,10 +35,8 @@ export default function TodoList() {
   function handleDeleteClick(e) {
     let newListOfDeleted = [...listOfDeleted];
     let newListOfTodo = [...listOfTodos];
-    newListOfDeleted.push(newListOfTodo[e.target.dataset.index]);
+    newListOfDeleted.unshift(newListOfTodo[e.target.dataset.index]);
     newListOfTodo.splice(e.target.dataset.index, 1);
-
-    console.log(newListOfDeleted);
 
     updateListOfTodo(newListOfTodo);
     setListOfDeleted(newListOfDeleted);
@@ -67,7 +66,8 @@ export default function TodoList() {
   }
 
   function handleDeleteAllClick() {
-    let newListOfDeleted = listOfDeleted.concat(listOfTodos);
+    let reversedListOfTodo = [...listOfTodos].reverse();
+    let newListOfDeleted = [].concat(reversedListOfTodo, listOfDeleted);
 
     setListOfDeleted(newListOfDeleted);
 
@@ -87,53 +87,64 @@ export default function TodoList() {
       handleDeleteClick={handleDeleteClick}
     />
   ));
-
   return (
     <section>
-      <div className="todo-container">
-        <MainInput
-          listOfTodos={listOfTodos}
-          updateListOfTodo={updateListOfTodo}
-        ></MainInput>
+      <MainInput
+        listOfTodos={listOfTodos}
+        updateListOfTodo={updateListOfTodo}
+      ></MainInput>
 
-        <div className="todo-list">
-          {listOfTodos.length ? (
-            <div className="list-control-buttons">
-              <Popup
-                trigger={
-                  <button className="done-all">
-                    <i className="fa-solid fa-square-check"></i> Отметить всё
-                  </button>
-                }
+      <div className="todo-list">
+        {listOfTodos.length ? (
+          <div className="list-control-buttons">
+            <Popup
+              trigger={
+                <button className="done-all">
+                  <i className="fa-solid fa-square-check"></i> Отметить всё
+                </button>
+              }
+            >
+              <div
+                className="popup-bg done-all"
+                style={{ position: "absolute", left: 0 }}
               >
-                <div className="popup-bg done-all">
-                  <div className="popup-message">Уверены?</div>
-                  <button className="done-all" onClick={handleAllDoneClick}>
-                    ДА
-                  </button>
-                </div>
-              </Popup>
-              <Popup
-                trigger={
-                  <button className="delete-all">
-                    Удалить всё <i className="fa-solid fa-trash"></i>
-                  </button>
-                }
+                <div className="popup-message">Уверены?</div>
+                <button
+                  className="done-all"
+                  onClick={handleAllDoneClick}
+                  style={{ color: "var(--lighter-blue)" }}
+                >
+                  ДА
+                </button>
+              </div>
+            </Popup>
+            <Popup
+              trigger={
+                <button className="delete-all">
+                  Удалить всё <i className="fa-solid fa-trash"></i>
+                </button>
+              }
+            >
+              <div
+                className="popup-bg delete-all"
+                style={{ position: "absolute", right: 0 }}
               >
-                <div className="popup-bg delete-all">
-                  <button className="delete-all" onClick={handleDeleteAllClick}>
-                    ДА
-                  </button>
-                  <div className="popup-message">Уверены?</div>
-                </div>
-              </Popup>
-            </div>
-          ) : (
-            <div></div>
-          )}
+                <button
+                  className="delete-all"
+                  onClick={handleDeleteAllClick}
+                  style={{ color: "var(--accent-color)" }}
+                >
+                  ДА
+                </button>
+                <div className="popup-message">Уверены?</div>
+              </div>
+            </Popup>
+          </div>
+        ) : (
+          <div className="nothing-in-list">Пока ничего не запланировано</div>
+        )}
 
-          <ul>{listItems}</ul>
-        </div>
+        <ul>{listItems}</ul>
       </div>
     </section>
   );

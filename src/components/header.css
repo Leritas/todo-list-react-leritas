@@ -1,0 +1,45 @@
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  background-color: var(--dark-nav-color);
+
+  .logo {
+    object-fit: cover;
+    height: 2.5rem;
+    margin-left: 3rem;
+  }
+
+  ul {
+    display: flex;
+    color: white;
+    gap: 5rem;
+    margin-right: 3rem;
+
+    li {
+      margin: 0 2rem;
+      list-style-type: none;
+      letter-spacing: 0.2rem;
+      cursor: pointer;
+      font-weight: bolder;
+      font-size: 1.3rem;
+      transition: all 0.2s;
+      display: inline;
+
+      a.active {
+        color: var(--accent-color);
+
+        &:hover {
+          text-shadow: 1px 1px 5px var(--accent-color);
+        }
+      }
+
+      a:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+}

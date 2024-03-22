@@ -1,0 +1,5 @@
+footer {
+  background-color: var(--dark-nav-color);
+  display: flex;
+  height: 5rem;
+}

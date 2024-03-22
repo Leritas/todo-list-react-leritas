@@ -16,183 +16,15 @@
 body {
   background-color: var(--background-color);
 }
-
-nav {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 5rem;
+button {
   background-color: var(--dark-nav-color);
-
-  .logo {
-    object-fit: cover;
-    height: 2.5rem;
-    margin-left: 3rem;
-  }
-
-  ul {
-    display: flex;
-    color: white;
-    gap: 5rem;
-    margin-right: 3rem;
-
-    li {
-      margin: 0 2rem;
-      list-style-type: none;
-      letter-spacing: 0.2rem;
-      cursor: pointer;
-      font-weight: bolder;
-      font-size: 1.3rem;
-      transition: all 0.2s;
-      display: inline;
-
-      &.active {
-        color: var(--accent-color);
-
-        &:hover {
-          text-shadow: 1px 1px 5px var(--accent-color);
-        }
-      }
-
-      &:hover {
-        color: var(--accent-color);
-      }
-    }
-  }
 }
-
 section {
   min-height: calc(100vh - 10rem);
-}
-
-.todo-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
   width: 80%;
   margin: auto;
-}
-
-.todo-input {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  text-align: center;
-
-  input {
-    height: 2rem;
-    background-color: var(--dark-nav-color);
-    padding: 1.5rem;
-    margin-top: 1rem;
-    width: 100%;
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
-  }
-}
-
-.todo-list {
-  width: 80%;
-  margin: auto;
-
-  button {
-    background-color: var(--dark-nav-color);
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      background-color: var(--accent-color);
-
-      i {
-        color: white;
-      }
-    }
-  }
-  .list-control-buttons {
-    width: 100%;
-    margin-bottom: 1rem;
-
-    .done-all {
-      padding: 0.5rem;
-      border-radius: 0.3rem;
-
-      i {
-        color: var(--lighter-blue);
-        transition: all 0.2s;
-      }
-
-      &:hover {
-        background-color: var(--lighter-blue);
-
-        i {
-          color: white;
-        }
-      }
-    }
-
-    .delete-all {
-      padding: 0.5rem;
-      border-radius: 0.3rem;
-      margin-right: 0.5rem;
-      float: right;
-
-      i {
-        color: var(--accent-color);
-        transition: all 0.2s;
-      }
-
-      &:hover {
-        i {
-          color: white;
-        }
-      }
-    }
-  }
-
-  li {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.5rem;
-
-    .todo-text {
-      font-size: 2rem;
-      overflow: hidden;
-      word-wrap: break-word;
-    }
-
-    .completed {
-      text-decoration: line-through;
-      text-decoration-color: var(--accent-color);
-      text-decoration-thickness: 0.2rem;
-    }
-
-    .date {
-      margin-left: auto;
-      text-wrap: nowrap;
-    }
-
-    .delete-button {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 100%;
-      border: 0px solid;
-      flex-shrink: 0;
-
-      i {
-        color: var(--accent-color);
-        transition: all 0.2s;
-      }
-
-      &:hover {
-        i {
-          color: white;
-        }
-      }
-    }
-  }
 }
 
 .popup-bg {
@@ -200,15 +32,7 @@ section {
   display: flex;
   align-items: center;
   height: 20vh;
-  position: absolute;
-
-  &.done-all {
-    left: 0;
-  }
-
-  &.delete-all {
-    right: 0;
-  }
+  border-radius: 0.5rem;
 
   .popup-message {
     font-size: 3rem;
@@ -217,25 +41,29 @@ section {
     text-wrap: nowrap;
   }
 
-  .done-all {
-    background-color: var(--dark-nav-color);
-    color: var(--lighter-blue);
+  button {
     font-size: 3rem;
     padding: 1rem;
     margin: 2rem;
-  }
-
-  .delete-all {
-    background-color: var(--dark-nav-color);
-    color: var(--accent-color);
-    font-size: 3rem;
-    padding: 1rem;
-    margin: 2rem;
+    border-radius: 0.5rem;
   }
 }
 
-footer {
-  background-color: var(--dark-nav-color);
-  display: flex;
-  height: 5rem;
+.delete-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  border: 0px solid;
+  flex-shrink: 0;
+
+  i {
+    color: var(--accent-color);
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    i {
+      color: white;
+    }
+  }
 }
