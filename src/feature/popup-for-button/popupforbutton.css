@@ -1,0 +1,21 @@
+.popup-bg {
+  background-color: rgba(0, 0, 0, 0.822);
+  display: flex;
+  align-items: center;
+  height: 8rem;
+  border-radius: 0.5rem;
+
+  .popup-message {
+    font-size: 3rem;
+    color: white;
+    margin: 1.5rem;
+    text-wrap: nowrap;
+  }
+
+  button {
+    font-size: 3rem;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+  }
+}
