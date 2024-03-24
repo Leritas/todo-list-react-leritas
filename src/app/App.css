@@ -1,0 +1,30 @@
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+:root {
+  --background-color: rgb(62, 62, 62);
+  --dark-nav-color: rgb(25, 25, 25);
+  --accent-color: rgb(255, 39, 39);
+  --lighter-blue: rgb(0, 110, 255);
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+button {
+  background-color: var(--dark-nav-color);
+}
+
+section {
+  min-height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}

@@ -1,0 +1,61 @@
+.todo-input {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  input {
+    height: 2rem;
+    background-color: var(--dark-nav-color);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    width: 90%;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.nothing-in-list {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.todo-list {
+  width: 85%;
+  margin: 0 auto;
+
+  li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+
+    input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    .todo-text {
+      font-size: 2rem;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      text-decoration-color: var(--accent-color);
+      text-decoration-thickness: 0.2rem;
+    }
+
+    .date {
+      margin-left: auto;
+      text-wrap: nowrap;
+      font-size: 1.1rem;
+    }
+  }
+}
