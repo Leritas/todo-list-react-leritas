@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ListsContext } from "../../contexts/lists-context/ListsContextProvider";
+import { ListsContext } from "src/entities/todo";
 import CreateTodo from "./ui/CreateTodo";
-import { TodoListControls } from "./ui/todo-list-controls";
+import { TodoListControls } from "./ui/TodoListControls";
 import TodoItem from "./ui/TodoItem";
 import "./todolist.css";
 
@@ -13,15 +13,15 @@ export function TodoList() {
       <CreateTodo></CreateTodo>
 
       <div className="todo-list">
-        {listOfTodos.length ? (
+        {listOfTodos.length > 0 ? (
           <TodoListControls />
         ) : (
           <div className="nothing-in-list">Пока ничего не запланировано</div>
         )}
 
         <ul>
-          {listOfTodos.map((todo, index) => (
-            <TodoItem todo={todo} index={index} key={todo.key} />
+          {listOfTodos.map((todo) => (
+            <TodoItem todo={todo} todoKey={todo.key} key={todo.key} />
           ))}
         </ul>
       </div>

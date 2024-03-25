@@ -50,3 +50,19 @@
     }
   }
 }
+
+.blue-yes-button {
+  color: var(--lighter-blue);
+}
+
+.red-yes-button {
+  color: var(--accent-color);
+}
+
+.fa-trash {
+  float: right;
+}
+
+.fa-square-check {
+  float: left;
+}

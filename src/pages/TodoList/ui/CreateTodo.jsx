@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTodo } from "../../../entities/todo";
+import { useTodo } from "src/entities/todo";
 
 export default function CreateTodo() {
   const [inputValue, setInputValue] = useState("");

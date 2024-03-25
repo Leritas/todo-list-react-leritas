@@ -1,8 +1,8 @@
 import React from "react";
-import { useTodo } from "../../../entities/todo/use-todo/useTodo";
-import { DeleteButton } from "../../../shared/ui/delete-button/DeleteButton";
+import { useTodo } from "src/entities/todo";
+import { DeleteButton } from "src/shared/ui/DeleteButton";
 
-export default function HistoryItem({ item, index }) {
+export default function HistoryItem({ item, itemKey }) {
   const { removeFromDeleted } = useTodo();
 
   return (
@@ -15,11 +15,7 @@ export default function HistoryItem({ item, index }) {
         {item.text}
       </span>
       <span className="date">{item.date}</span>
-      <DeleteButton
-        handleDeleteClick={() => {
-          removeFromDeleted(index);
-        }}
-      />
+      <DeleteButton handleDeleteClick={() => removeFromDeleted(itemKey)} />
     </li>
   );
 }

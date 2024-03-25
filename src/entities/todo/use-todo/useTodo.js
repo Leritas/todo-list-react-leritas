@@ -1,101 +1,96 @@
 import { useContext } from "react";
-import { ListsContext } from "../../../contexts/lists-context/ListsContextProvider";
-import { updateLocalListTodos } from "../api/useLocalListTodos";
-import { updateLocalListDeleted } from "../api/useLocalListDeleted";
+import { ListsContext } from "src/entities/todo";
 import { getNowFormattedDate } from "./utils";
 
 export function useTodo() {
-  const { listOfTodos, setListOfTodos, listOfDeleted, setListOfDeleted } =
-    useContext(ListsContext);
+  const {
+    listOfDeletedTodos,
+    updateListOfDeletedTodos,
+    listOfTodos,
+    updateListOfTodos,
+  } = useContext(ListsContext);
 
   //Add new todo to the list
   function addTodo(text) {
     if (text.length < 4) return;
 
-    let updatedList = [
+    const newListOfTodos = [
       ...listOfTodos,
       {
-        key: new Date(),
+        key: Number(new Date()),
         date: getNowFormattedDate(),
         completed: false,
         text: text,
       },
     ];
 
-    setListOfTodos(updatedList);
-
-    updateLocalListTodos(updatedList);
+    updateListOfTodos(newListOfTodos);
   }
 
   //Remove single todo from list and add it to Deleted list
-  function removeTodo(index) {
-    let newListOfDeleted = [...listOfDeleted];
-    let newListOfTodo = [...listOfTodos];
-    newListOfDeleted.unshift(newListOfTodo[index]);
-    newListOfTodo.splice(index, 1);
+  function removeTodo(key) {
+    const todoToRemove = listOfTodos.find((todo) => {
+      return todo.key === key;
+    });
+    const newListOfDeletedTodos = [todoToRemove, ...listOfDeletedTodos];
+    const newListOfTodos = listOfTodos.filter((todo) => todo.key != key);
 
-    setListOfTodos(newListOfTodo);
-    setListOfDeleted(newListOfDeleted);
-
-    updateLocalListTodos(newListOfTodo);
-    updateLocalListDeleted(newListOfDeleted);
+    updateListOfDeletedTodos(newListOfDeletedTodos);
+    updateListOfTodos(newListOfTodos);
   }
 
   //Toggle todo completed true/false
-  function toggleTodo(index) {
-    let newListOfTodo = [...listOfTodos];
-    newListOfTodo[index].completed = !newListOfTodo[index].completed;
+  function toggleTodo(key) {
+    const newListOfTodos = [...listOfTodos];
 
-    setListOfTodos(newListOfTodo);
+    newListOfTodos.map((todo) => {
+      if (todo.key === key) todo.completed = !todo.completed;
+    });
 
-    updateLocalListTodos(newListOfTodo);
+    updateListOfTodos(newListOfTodos);
   }
 
   //Toggle all list either all true(if any false) or all false (if all true)
   function toggleAlltodo() {
-    let incomplete = 0;
-    let newListOfTodo = [...listOfTodos];
-    newListOfTodo.map((todo) => {
+    let countIncomplete = 0;
+    const newListOfTodos = [...listOfTodos];
+
+    newListOfTodos.map((todo) => {
       if (!todo.completed) {
-        incomplete++;
+        countIncomplete++;
       }
     });
-    if (incomplete) {
-      newListOfTodo.map((todo) => (todo.completed = true));
+
+    if (countIncomplete > 0) {
+      newListOfTodos.map((todo) => (todo.completed = true));
     } else {
-      newListOfTodo.map((todo) => (todo.completed = false));
+      newListOfTodos.map((todo) => (todo.completed = false));
     }
 
-    setListOfTodos(newListOfTodo);
-    updateLocalListTodos(newListOfTodo);
+    updateListOfTodos(newListOfTodos);
   }
 
   // Remove all todos and move them to deleted list for history, Note: list is Reversed
   function removeAllTodo() {
-    let reversedListOfTodo = [...listOfTodos].reverse();
-    let newListOfDeleted = [].concat(reversedListOfTodo, listOfDeleted);
+    const reversedListOfTodo = [...listOfTodos].reverse();
+    const newListOfDeleted = [...reversedListOfTodo, ...listOfDeletedTodos];
 
-    setListOfDeleted(newListOfDeleted);
-    setListOfTodos([]);
-
-    updateLocalListDeleted(newListOfDeleted);
-    updateLocalListTodos([]);
+    updateListOfDeletedTodos(newListOfDeleted);
+    updateListOfTodos([]);
   }
 
   //remove from deleted single list item and it is gone forever :(
-  function removeFromDeleted(index) {
-    let newListOfDeleted = [...listOfDeleted];
-    newListOfDeleted.splice(index, 1);
+  function removeFromDeleted(key) {
+    const newListOfDeleted = listOfDeletedTodos.filter(
+      (deletedTodo) => deletedTodo.key != key
+    );
 
-    setListOfDeleted(newListOfDeleted);
-    updateLocalListDeleted(newListOfDeleted);
+    updateListOfDeletedTodos(newListOfDeleted);
   }
 
   //BURN ALL THE HISTORY LIST (Deleted list)
   function clearAllDeleted() {
-    setListOfDeleted([]);
-
-    updateLocalListDeleted([]);
+    updateListOfDeletedTodos([]);
   }
 
   return {
@@ -106,5 +101,7 @@ export function useTodo() {
     toggleAlltodo,
     removeFromDeleted,
     clearAllDeleted,
+    listOfTodos,
+    listOfDeletedTodos,
   };
 }

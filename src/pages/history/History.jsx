@@ -1,21 +1,20 @@
-import { useContext } from "react";
-import { ListsContext } from "../../contexts/lists-context/ListsContextProvider";
+import { useTodo } from "src/entities/todo";
 import ClearHistory from "./ui/ClearHistory";
 import HistoryItem from "./ui/HistoryItem";
 import "./history.css";
 
 export function History() {
-  const { listOfDeleted } = useContext(ListsContext);
+  const { listOfDeletedTodos } = useTodo();
 
   return (
     <section className="history">
       <h1 className="history-title">История удаленных из списка задач:</h1>
-      {listOfDeleted.length ? (
+      {listOfDeletedTodos.length > 0 ? (
         <>
           <ClearHistory />
           <ul className="history-list">
-            {listOfDeleted.map((item, index) => (
-              <HistoryItem key={item.key} index={index} item={item} />
+            {listOfDeletedTodos.map((item) => (
+              <HistoryItem key={item.key} itemKey={item.key} item={item} />
             ))}
           </ul>
         </>

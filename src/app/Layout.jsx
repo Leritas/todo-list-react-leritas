@@ -1,15 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { ListsContextProvider } from "../contexts/lists-context/ListsContextProvider";
-import Footer from "../widgets/footer/Footer";
-import Header from "../widgets/header/Header";
+import { Footer } from "src/widgets/Footer";
+import { Header } from "src/widgets/Header";
 
 export default function Layout() {
   return (
     <>
       <Header />
-      <ListsContextProvider>
-        <Outlet />
-      </ListsContextProvider>
+      <Outlet />
       <Footer />
     </>
   );

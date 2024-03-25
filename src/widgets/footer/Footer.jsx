@@ -1,7 +1,6 @@
-import { useState } from "react";
 import "./footer.css";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer>
       <img src="" alt="" className="footerLogo" />

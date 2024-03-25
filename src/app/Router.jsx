@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import { TodoList } from "../pages/todo-list";
-import { History } from "../pages/history";
+import { TodoList } from "src/pages/TodoList";
+import { History } from "src/pages/History";
 
 export default function Router() {
   return (

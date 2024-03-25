@@ -1,5 +1,5 @@
-import { PopupForButton } from "../../../feature/popup-for-button";
-import { useTodo } from "../../../entities/todo/use-todo/useTodo";
+import { PopupForButton } from "src/feature/PopupForButton";
+import { useTodo } from "src/entities/todo";
 
 export default function ClearHistory() {
   const { clearAllDeleted } = useTodo();

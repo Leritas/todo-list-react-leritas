@@ -1,7 +1,7 @@
-import { PopupForButton } from "../../../../feature/popup-for-button";
-import { useTodo } from "../../../../entities/todo";
-import { IconCheck } from "../../../../shared/ui/icon-check";
-import { IconTrash } from "../../../../shared/ui/icon-trash";
+import { PopupForButton } from "src/feature/PopupForButton";
+import { useTodo } from "src/entities/todo";
+import { IconCheck } from "src/shared/ui/IconCheck";
+import { IconTrash } from "src/shared/ui/IconTrash";
 import "./todolistcontrols.css";
 
 export function TodoListControls() {
@@ -17,7 +17,7 @@ export function TodoListControls() {
           onClick={() => {
             toggleAlltodo();
           }}
-          style={{ color: "var(--lighter-blue)" }}
+          className="blue-yes-button"
         >
           ДА
         </button>
@@ -30,7 +30,7 @@ export function TodoListControls() {
           onClick={() => {
             removeAllTodo();
           }}
-          style={{ color: "var(--accent-color)" }}
+          className="red-yes-button"
         >
           ДА
         </button>

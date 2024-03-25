@@ -8,6 +8,7 @@
   cursor: pointer;
 
   i {
+    float: none;
     color: var(--accent-color);
     transition: all 0.2s;
   }
