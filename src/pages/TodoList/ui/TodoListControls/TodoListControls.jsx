@@ -13,12 +13,7 @@ export function TodoListControls() {
         triggerButtonIcon={<IconCheck />}
         triggerButtonText="ㅤОтметить всё"
       >
-        <button
-          onClick={() => {
-            toggleAlltodo();
-          }}
-          className="blue-yes-button"
-        >
+        <button onClick={toggleAlltodo} className="blue-yes-button">
           ДА
         </button>
       </PopupForButton>
@@ -26,12 +21,7 @@ export function TodoListControls() {
         triggerButtonIcon={<IconTrash />}
         triggerButtonText="Удалить всёㅤ"
       >
-        <button
-          onClick={() => {
-            removeAllTodo();
-          }}
-          className="red-yes-button"
-        >
+        <button onClick={removeAllTodo} className="red-yes-button">
           ДА
         </button>
       </PopupForButton>

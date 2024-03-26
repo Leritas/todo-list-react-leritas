@@ -5,12 +5,7 @@ export function ClearHistory() {
   const { clearAllDeleted } = useTodo();
   return (
     <PopupForButton triggerButtonText="Очистить историю">
-      <button
-        onClick={() => {
-          clearAllDeleted();
-        }}
-        style={{ color: "var(--accent-color" }}
-      >
+      <button onClick={clearAllDeleted} style={{ color: "var(--accent-color" }}>
         ДА
       </button>
     </PopupForButton>

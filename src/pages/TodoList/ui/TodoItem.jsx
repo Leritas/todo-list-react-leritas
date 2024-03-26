@@ -10,9 +10,7 @@ export function TodoItem({ todo, todoKey }) {
           type="checkbox"
           name="completed"
           checked={todo.completed}
-          onChange={() => {
-            toggleTodo(todoKey);
-          }}
+          onChange={() => toggleTodo(todoKey)}
         />
         <span className={todo.completed ? "completed todo-text" : "todo-text"}>
           {todo.text}
@@ -20,11 +18,7 @@ export function TodoItem({ todo, todoKey }) {
       </div>
       <span className="date">
         {todo.date}
-        <DeleteButton
-          handleDeleteClick={() => {
-            removeTodo(todoKey);
-          }}
-        />
+        <DeleteButton handleDeleteClick={() => removeTodo(todoKey)} />
       </span>
     </li>
   );
