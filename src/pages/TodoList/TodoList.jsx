@@ -1,16 +1,15 @@
-import { useContext } from "react";
-import { ListsContext } from "src/entities/todo";
-import CreateTodo from "./ui/CreateTodo";
+import { useTodo } from "src/entities/todo";
 import { TodoListControls } from "./ui/TodoListControls";
-import TodoItem from "./ui/TodoItem";
+import { CreateTodo } from "./ui/CreateTodo";
+import { TodoItem } from "./ui/TodoItem";
 import "./todolist.css";
 
 export function TodoList() {
-  const { listOfTodos } = useContext(ListsContext);
+  const { listOfTodos } = useTodo();
 
   return (
     <section>
-      <CreateTodo></CreateTodo>
+      <CreateTodo />
 
       <div className="todo-list">
         {listOfTodos.length > 0 ? (

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ListsContext } from "src/entities/todo";
-import { getNowFormattedDate } from "./utils";
+import { ListsContext } from "../ListsContextProvider";
+import { newTodo } from "./utils";
 
 export function useTodo() {
   const {
@@ -14,78 +14,64 @@ export function useTodo() {
   function addTodo(text) {
     if (text.length < 4) return;
 
-    const newListOfTodos = [
-      ...listOfTodos,
-      {
-        key: Number(new Date()),
-        date: getNowFormattedDate(),
-        completed: false,
-        text: text,
-      },
-    ];
-
-    updateListOfTodos(newListOfTodos);
+    updateListOfTodos([...listOfTodos, newTodo(text)]);
   }
 
   //Remove single todo from list and add it to Deleted list
   function removeTodo(key) {
-    const todoToRemove = listOfTodos.find((todo) => {
-      return todo.key === key;
-    });
-    const newListOfDeletedTodos = [todoToRemove, ...listOfDeletedTodos];
-    const newListOfTodos = listOfTodos.filter((todo) => todo.key != key);
+    const todoToRemove = listOfTodos.find((todo) => todo.key === key);
+    const newListOfTodos = listOfTodos.filter((todo) => todo.key !== key);
 
-    updateListOfDeletedTodos(newListOfDeletedTodos);
+    updateListOfDeletedTodos([todoToRemove, ...listOfDeletedTodos]);
     updateListOfTodos(newListOfTodos);
   }
 
   //Toggle todo completed true/false
   function toggleTodo(key) {
-    const newListOfTodos = [...listOfTodos];
-
-    newListOfTodos.map((todo) => {
-      if (todo.key === key) todo.completed = !todo.completed;
-    });
-
-    updateListOfTodos(newListOfTodos);
+    updateListOfTodos(
+      listOfTodos.map((todo) => {
+        if (todo.key === key) todo.completed = !todo.completed;
+        return todo;
+      })
+    );
   }
 
   //Toggle all list either all true(if any false) or all false (if all true)
   function toggleAlltodo() {
     let countIncomplete = 0;
-    const newListOfTodos = [...listOfTodos];
-
-    newListOfTodos.map((todo) => {
+    listOfTodos.forEach((todo) => {
       if (!todo.completed) {
         countIncomplete++;
       }
     });
-
     if (countIncomplete > 0) {
-      newListOfTodos.map((todo) => (todo.completed = true));
+      updateListOfTodos(
+        listOfTodos.map((todo) => {
+          todo.completed = true;
+          return todo;
+        })
+      );
     } else {
-      newListOfTodos.map((todo) => (todo.completed = false));
+      updateListOfTodos(
+        listOfTodos.map((todo) => {
+          todo.completed = false;
+          return todo;
+        })
+      );
     }
-
-    updateListOfTodos(newListOfTodos);
   }
 
   // Remove all todos and move them to deleted list for history, Note: list is Reversed
   function removeAllTodo() {
-    const reversedListOfTodo = [...listOfTodos].reverse();
-    const newListOfDeleted = [...reversedListOfTodo, ...listOfDeletedTodos];
-
-    updateListOfDeletedTodos(newListOfDeleted);
+    updateListOfDeletedTodos([...listOfTodos.reverse(), ...listOfDeletedTodos]);
     updateListOfTodos([]);
   }
 
   //remove from deleted single list item and it is gone forever :(
   function removeFromDeleted(key) {
-    const newListOfDeleted = listOfDeletedTodos.filter(
-      (deletedTodo) => deletedTodo.key != key
+    updateListOfDeletedTodos(
+      listOfDeletedTodos.filter((todo) => todo.key !== key)
     );
-
-    updateListOfDeletedTodos(newListOfDeleted);
   }
 
   //BURN ALL THE HISTORY LIST (Deleted list)

@@ -1,5 +1,39 @@
 footer {
   background-color: var(--dark-nav-color);
-  display: flex;
   height: 5rem;
+  width: 100%;
+
+  ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style-type: none;
+
+    i {
+      font-size: 1.2rem;
+      margin: 1rem;
+    }
+
+    a {
+      color: white;
+      transition: all 0.2s;
+      font-weight: bold;
+
+      &:hover {
+        color: var(--accent-color);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  footer {
+    height: 3.5rem;
+
+    ul > li > i {
+      margin-left: 0;
+    }
+  }
 }

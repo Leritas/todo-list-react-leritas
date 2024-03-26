@@ -28,3 +28,10 @@ section {
   width: 80%;
   margin: auto;
 }
+
+@media screen and (max-width: 700px) {
+  section {
+    min-height: calc(100vh - 7rem);
+    width: 95%;
+  }
+}

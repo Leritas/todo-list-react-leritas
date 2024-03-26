@@ -1,4 +1,10 @@
 import { createContext, useState } from "react";
+import {
+  getListOfDeletedTodos,
+  getListofTodos,
+  setLocalListOfDeletedTodos,
+  setLocalListofTodos,
+} from "../use-todo/utils";
 
 export const ListsContext = createContext(null);
 
@@ -8,31 +14,14 @@ export const ListsContextProvider = ({ children }) => {
   );
   const [listOfTodos, setListOfTodos] = useState(getListofTodos());
 
-  function getListOfDeletedTodos() {
-    return JSON.parse(
-      localStorage.getItem("localListOfDeleted") ||
-        localStorage.setItem("localListOfDeleted", "[]")
-    );
-  }
-
-  function getListofTodos() {
-    return JSON.parse(
-      localStorage.getItem("localListOfTodos") ||
-        localStorage.setItem("localListOfTodos", "[]")
-    );
-  }
-
   function updateListOfDeletedTodos(newListOfDeletedTodos) {
     setListOfDeletedTodos(newListOfDeletedTodos);
-    localStorage.setItem(
-      "localListOfDeleted",
-      JSON.stringify(newListOfDeletedTodos)
-    );
+    setLocalListOfDeletedTodos(newListOfDeletedTodos);
   }
 
   function updateListOfTodos(newListOfTodos) {
     setListOfTodos(newListOfTodos);
-    localStorage.setItem("localListOfTodos", JSON.stringify(newListOfTodos));
+    setLocalListofTodos(newListOfTodos);
   }
 
   return (

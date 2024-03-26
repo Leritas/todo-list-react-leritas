@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTodo } from "src/entities/todo";
 
-export default function CreateTodo() {
+export function CreateTodo() {
   const [inputValue, setInputValue] = useState("");
   const { addTodo } = useTodo();
 

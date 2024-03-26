@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Footer } from "src/widgets/Footer";
 import { Header } from "src/widgets/Header";
+import { Footer } from "src/widgets/Footer";
 
-export default function Layout() {
+export function Layout() {
   return (
     <>
       <Header />

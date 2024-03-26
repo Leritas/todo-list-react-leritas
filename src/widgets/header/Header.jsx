@@ -15,10 +15,6 @@ export function Header() {
         <li className="navItem">
           <NavLink to="/history">История</NavLink>
         </li>
-
-        <li className="navItem">
-          <NavLink to="/profile">Авторизация </NavLink>
-        </li>
       </ul>
     </nav>
   );

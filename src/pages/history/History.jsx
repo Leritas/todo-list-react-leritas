@@ -1,6 +1,6 @@
 import { useTodo } from "src/entities/todo";
-import ClearHistory from "./ui/ClearHistory";
-import HistoryItem from "./ui/HistoryItem";
+import { ClearHistory } from "./ui/ClearHistory";
+import { HistoryItem } from "./ui/HistoryItem";
 import "./history.css";
 
 export function History() {
