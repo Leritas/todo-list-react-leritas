@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useTodo } from "src/entities/todo";
 
 export function CreateTodo() {
   const [inputValue, setInputValue] = useState("");
   const { addTodo } = useTodo();
 
-  function handleInputChange(e) {
-    setInputValue(e.target.value);
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value as string);
   }
 
-  function handleKeyDownEnter(e) {
+  function handleKeyDownEnter(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      addTodo(e.target.value);
+      addTodo((e.target as HTMLInputElement).value);
       setInputValue("");
     }
   }

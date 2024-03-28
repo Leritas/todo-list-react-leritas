@@ -1,7 +1,13 @@
-import { useTodo } from "src/entities/todo/use-todo/useTodo";
+import { useTodo } from "src/entities/todo/";
+import { Todo } from "src/entities/todo/";
 import { DeleteButton } from "src/shared/ui/DeleteButton";
 
-export function TodoItem({ todo, todoKey }) {
+interface TodoItemProps {
+  todo: Todo;
+  todoKey: number;
+}
+
+export function TodoItem({ todo, todoKey }: TodoItemProps) {
   const { removeTodo, toggleTodo } = useTodo();
   return (
     <li>

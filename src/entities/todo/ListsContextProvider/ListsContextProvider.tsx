@@ -1,25 +1,37 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 import {
+  Todo,
   getListOfDeletedTodos,
   getListofTodos,
   setLocalListOfDeletedTodos,
   setLocalListofTodos,
 } from "../use-todo/utils";
 
-export const ListsContext = createContext(null);
+interface PropsWithChildren {
+  children: ReactNode;
+}
 
-export const ListsContextProvider = ({ children }) => {
+interface TodoListsContext {
+  listOfDeletedTodos: Todo[];
+  updateListOfDeletedTodos(newListOfDeletedTodos: Todo[]): void;
+  listOfTodos: Todo[];
+  updateListOfTodos(newListOfTodos: Todo[]): void;
+}
+
+export const ListsContext = createContext<TodoListsContext>("" as any);
+
+export const ListsContextProvider = (props: PropsWithChildren) => {
   const [listOfDeletedTodos, setListOfDeletedTodos] = useState(
     getListOfDeletedTodos()
   );
   const [listOfTodos, setListOfTodos] = useState(getListofTodos());
 
-  function updateListOfDeletedTodos(newListOfDeletedTodos) {
+  function updateListOfDeletedTodos(newListOfDeletedTodos: Todo[]) {
     setListOfDeletedTodos(newListOfDeletedTodos);
     setLocalListOfDeletedTodos(newListOfDeletedTodos);
   }
 
-  function updateListOfTodos(newListOfTodos) {
+  function updateListOfTodos(newListOfTodos: Todo[]) {
     setListOfTodos(newListOfTodos);
     setLocalListofTodos(newListOfTodos);
   }
@@ -33,7 +45,7 @@ export const ListsContextProvider = ({ children }) => {
         updateListOfTodos,
       }}
     >
-      {children}
+      {props.children}
     </ListsContext.Provider>
   );
 };

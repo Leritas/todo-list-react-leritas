@@ -13,8 +13,8 @@ export function History() {
         <>
           <ClearHistory />
           <ul className="history-list">
-            {listOfDeletedTodos.map((item) => (
-              <HistoryItem key={item.key} itemKey={item.key} item={item} />
+            {listOfDeletedTodos.map((todo) => (
+              <HistoryItem key={todo.key} todoKey={todo.key} todo={todo} />
             ))}
           </ul>
         </>

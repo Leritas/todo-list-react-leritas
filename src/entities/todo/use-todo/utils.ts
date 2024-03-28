@@ -1,3 +1,10 @@
+export interface Todo {
+  key: number;
+  date: string;
+  completed: boolean;
+  text: string;
+}
+
 export function getNowFormattedDate() {
   const monthList = [
     "Января",
@@ -32,35 +39,39 @@ export function getListOfDeletedTodos() {
   if (localStorage.getItem("localListOfDeleted") === null) {
     setLocalListOfDeletedTodos([]);
   }
-  return JSON.parse(localStorage.getItem("localListOfDeleted"));
+  return JSON.parse(
+    localStorage.getItem("localListOfDeleted") as string
+  ) as Todo[];
 }
 
 export function getListofTodos() {
   if (localStorage.getItem("localListOfTodos") === null) {
     setLocalListofTodos([]);
   }
-  return JSON.parse(localStorage.getItem("localListOfTodos"));
+  return JSON.parse(
+    localStorage.getItem("localListOfTodos") as string
+  ) as Todo[];
 }
 
-export function setLocalListOfDeletedTodos(newListOfDeletedTodos) {
+export function setLocalListOfDeletedTodos(newListOfDeletedTodos: Todo[]) {
   return localStorage.setItem(
     "localListOfDeleted",
     JSON.stringify(newListOfDeletedTodos)
   );
 }
 
-export function setLocalListofTodos(newListOfTodos) {
+export function setLocalListofTodos(newListOfTodos: Todo[]) {
   return localStorage.setItem(
     "localListOfTodos",
     JSON.stringify(newListOfTodos)
   );
 }
 
-export function newTodo(text) {
+export function newTodo(text: string) {
   return {
     key: Number(new Date()),
     date: getNowFormattedDate(),
     completed: false,
     text,
-  };
+  } as Todo;
 }
