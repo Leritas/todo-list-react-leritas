@@ -1,1 +1,0 @@
-export { IconTelegram } from "./IconTelegram";

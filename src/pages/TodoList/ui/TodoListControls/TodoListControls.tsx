@@ -1,7 +1,7 @@
-import { PopupForButton } from "src/feature/PopupForButton";
+import { PopupForButton } from "src/shared/ui/PopupForButton";
 import { useTodo } from "src/entities/todo";
-import { IconCheck } from "src/shared/ui/IconCheck";
-import { IconTrash } from "src/shared/ui/IconTrash";
+import { IconCheck } from "src/shared/ui/Icons";
+import { IconTrash } from "src/shared/ui/Icons";
 import "./todolistcontrols.css";
 
 export function TodoListControls() {

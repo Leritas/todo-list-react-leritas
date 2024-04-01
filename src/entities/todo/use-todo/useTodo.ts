@@ -1,6 +1,7 @@
 import { useContext } from "react";
+import { Todo, TodoListsContext } from "src/entities/interfaces";
 import { ListsContext } from "../ListsContextProvider";
-import { Todo, newTodo } from "./utils";
+import { newTodo } from "./utils";
 
 export function useTodo() {
   const {
@@ -8,7 +9,8 @@ export function useTodo() {
     updateListOfDeletedTodos,
     listOfTodos,
     updateListOfTodos,
-  } = useContext(ListsContext);
+  } = useContext(ListsContext) as TodoListsContext;
+  //  as TodoListsContext; because context has initial value Null, i need to specify type
 
   //Add new todo to the list
   function addTodo(text: string) {
@@ -22,6 +24,8 @@ export function useTodo() {
     const todoToRemove = listOfTodos.find(
       (todo: Todo) => todo.key === key
     ) as Todo;
+    // as Todo; because .find returns Todo | undefined, i must specify
+
     const newListOfTodos = listOfTodos.filter((todo: Todo) => todo.key !== key);
 
     updateListOfDeletedTodos([todoToRemove, ...listOfDeletedTodos]);

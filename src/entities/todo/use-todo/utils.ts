@@ -1,9 +1,4 @@
-export interface Todo {
-  key: number;
-  date: string;
-  completed: boolean;
-  text: string;
-}
+import { Todo } from "src/entities/interfaces";
 
 export function getNowFormattedDate() {
   const monthList = [
@@ -67,11 +62,11 @@ export function setLocalListofTodos(newListOfTodos: Todo[]) {
   );
 }
 
-export function newTodo(text: string) {
+export const newTodo = (text: string): Todo => {
   return {
     key: Number(new Date()),
     date: getNowFormattedDate(),
     completed: false,
     text,
-  } as Todo;
-}
+  };
+};

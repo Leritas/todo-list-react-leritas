@@ -1,14 +1,12 @@
 import React from "react";
 import "./delete-button.css";
 
-interface ButtonProps {
-  handleDeleteClick: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export function DeleteButton({ handleDeleteClick }: ButtonProps) {
+export const DeleteButton: React.FC<{ handleDeleteClick: () => void }> = ({
+  handleDeleteClick,
+}) => {
   return (
     <button className="delete-button" onClick={handleDeleteClick}>
       <i className="fa-solid fa-trash"></i>
     </button>
   );
-}
+};

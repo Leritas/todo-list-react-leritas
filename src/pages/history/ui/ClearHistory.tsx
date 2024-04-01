@@ -1,4 +1,4 @@
-import { PopupForButton } from "src/feature/PopupForButton";
+import { PopupForButton } from "src/shared/ui/PopupForButton";
 import { useTodo } from "src/entities/todo";
 
 export function ClearHistory() {

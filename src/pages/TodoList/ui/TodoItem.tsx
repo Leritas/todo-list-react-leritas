@@ -7,7 +7,7 @@ interface TodoItemProps {
   todoKey: number;
 }
 
-export function TodoItem({ todo, todoKey }: TodoItemProps) {
+export const TodoItem: React.FC<TodoItemProps> = ({ todo, todoKey }) => {
   const { removeTodo, toggleTodo } = useTodo();
   return (
     <li>
@@ -28,4 +28,4 @@ export function TodoItem({ todo, todoKey }: TodoItemProps) {
       </span>
     </li>
   );
-}
+};
