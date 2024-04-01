@@ -1,1 +1,0 @@
-export { IconGithub } from "./IconGithub";

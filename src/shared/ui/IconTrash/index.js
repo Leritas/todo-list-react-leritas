@@ -1,1 +1,0 @@
-export { IconTrash } from "./IconTrash";

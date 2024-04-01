@@ -1,11 +1,18 @@
+import React from "react";
 import Popup from "reactjs-popup";
 import "./popupforbutton.css";
 
-export function PopupForButton({
+interface PopupForButtonProps {
+  children: React.ReactNode;
+  triggerButtonIcon: React.JSX.Element;
+  triggerButtonText: string;
+}
+
+export const PopupForButton: React.FC<PopupForButtonProps> = ({
   children,
   triggerButtonIcon,
   triggerButtonText,
-}) {
+}) => {
   return (
     <Popup
       trigger={
@@ -21,4 +28,4 @@ export function PopupForButton({
       </div>
     </Popup>
   );
-}
+};

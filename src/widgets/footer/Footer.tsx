@@ -1,6 +1,6 @@
-import { IconVk } from "src/shared/ui/IconVk";
-import { IconTelegram } from "src/shared/ui/IconTelegram";
-import { IconGithub } from "src/shared/ui/IconGithub";
+import { IconVk } from "src/shared/ui/Icons";
+import { IconTelegram } from "src/shared/ui/Icons";
+import { IconGithub } from "src/shared/ui/Icons";
 import "./footer.css";
 
 export function Footer() {

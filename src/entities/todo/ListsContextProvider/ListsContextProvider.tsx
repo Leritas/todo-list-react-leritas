@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
+import { Todo, TodoListsContext } from "src/entities/interfaces";
 import {
   getListOfDeletedTodos,
   getListofTodos,
@@ -6,20 +7,22 @@ import {
   setLocalListofTodos,
 } from "../use-todo/utils";
 
-export const ListsContext = createContext(null);
+export const ListsContext = createContext<TodoListsContext | null>(null);
 
-export const ListsContextProvider = ({ children }) => {
+export const ListsContextProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [listOfDeletedTodos, setListOfDeletedTodos] = useState(
-    getListOfDeletedTodos()
+    getListOfDeletedTodos
   );
-  const [listOfTodos, setListOfTodos] = useState(getListofTodos());
+  const [listOfTodos, setListOfTodos] = useState(getListofTodos);
 
-  function updateListOfDeletedTodos(newListOfDeletedTodos) {
+  function updateListOfDeletedTodos(newListOfDeletedTodos: Todo[]) {
     setListOfDeletedTodos(newListOfDeletedTodos);
     setLocalListOfDeletedTodos(newListOfDeletedTodos);
   }
 
-  function updateListOfTodos(newListOfTodos) {
+  function updateListOfTodos(newListOfTodos: Todo[]) {
     setListOfTodos(newListOfTodos);
     setLocalListofTodos(newListOfTodos);
   }

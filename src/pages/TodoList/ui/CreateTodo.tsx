@@ -5,17 +5,6 @@ export function CreateTodo() {
   const [inputValue, setInputValue] = useState("");
   const { addTodo } = useTodo();
 
-  function handleInputChange(e) {
-    setInputValue(e.target.value);
-  }
-
-  function handleKeyDownEnter(e) {
-    if (e.key === "Enter") {
-      addTodo(e.target.value);
-      setInputValue("");
-    }
-  }
-
   return (
     <div className="todo-input">
       <label htmlFor="add-todo">
@@ -27,8 +16,13 @@ export function CreateTodo() {
         name="todo"
         id="add-todo"
         value={inputValue}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDownEnter}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            addTodo(e.currentTarget.value);
+            setInputValue("");
+          }
+        }}
       />
     </div>
   );

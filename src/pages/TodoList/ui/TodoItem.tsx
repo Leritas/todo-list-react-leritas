@@ -1,7 +1,13 @@
-import { useTodo } from "src/entities/todo/use-todo/useTodo";
+import { useTodo } from "src/entities/todo/";
+import { Todo } from "src/entities/todo/";
 import { DeleteButton } from "src/shared/ui/DeleteButton";
 
-export function TodoItem({ todo, todoKey }) {
+interface TodoItemProps {
+  todo: Todo;
+  todoKey: number;
+}
+
+export const TodoItem: React.FC<TodoItemProps> = ({ todo, todoKey }) => {
   const { removeTodo, toggleTodo } = useTodo();
   return (
     <li>
@@ -22,4 +28,4 @@ export function TodoItem({ todo, todoKey }) {
       </span>
     </li>
   );
-}
+};
