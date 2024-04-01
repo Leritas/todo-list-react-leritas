@@ -1,0 +1,68 @@
+.list-control-buttons {
+  width: 100%;
+  margin-bottom: 1rem;
+
+  button {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s;
+
+    i {
+      margin-top: 0.25rem;
+      transition: all 0.2s;
+    }
+  }
+
+  button:first-child {
+    i {
+      color: var(--lighter-blue);
+    }
+
+    &:hover {
+      background-color: var(--lighter-blue);
+
+      i {
+        color: white;
+      }
+    }
+
+    &:active {
+      background-color: darkblue;
+    }
+  }
+
+  button:last-child {
+    float: right;
+
+    i {
+      color: var(--accent-color);
+    }
+
+    &:hover {
+      background-color: var(--accent-color);
+      i {
+        color: white;
+      }
+    }
+
+    &:active {
+      background-color: darkred;
+    }
+  }
+}
+
+.blue-yes-button {
+  color: var(--lighter-blue);
+}
+
+.red-yes-button {
+  color: var(--accent-color);
+}
+
+.fa-trash {
+  float: right;
+}
+
+.fa-square-check {
+  float: left;
+}

@@ -1,0 +1,40 @@
+.popup-bg {
+  background-color: rgba(0, 0, 0, 0.822);
+  display: flex;
+  align-items: center;
+  height: 8rem;
+  border-radius: 0.5rem;
+
+  .popup-message {
+    font-size: 3rem;
+    color: white;
+    margin: 1.5rem;
+    text-wrap: nowrap;
+  }
+
+  button {
+    font-size: 3rem;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .popup-bg {
+    flex-direction: column;
+    height: fit-content;
+
+    .popup-message {
+      font-size: 2rem;
+      margin: 0.5rem 1rem;
+    }
+    button {
+      font-size: 2rem;
+      font-weight: 400;
+      padding: 0.5rem 0;
+      margin: 0.5rem;
+      width: calc(100% - 3rem);
+    }
+  }
+}
