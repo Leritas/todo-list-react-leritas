@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { Todo, TodoListsContext } from "src/entities/interfaces";
+import { Todo } from "src/entities/interfaces";
 import { ListsContext } from "../ListsContextProvider";
 import { newTodo } from "./utils";
+import { useStrictContext } from "src/entities/useStrictContext";
 
 export function useTodo() {
   const {
@@ -9,8 +9,7 @@ export function useTodo() {
     updateListOfDeletedTodos,
     listOfTodos,
     updateListOfTodos,
-  } = useContext(ListsContext) as TodoListsContext;
-  //  as TodoListsContext; because context has initial value Null, i need to specify type
+  } = useStrictContext(ListsContext);
 
   //Add new todo to the list
   function addTodo(text: string) {
